@@ -1,0 +1,29 @@
+[theme]
+base = "dark"
+primaryColor = "#00FFD1"               # Bright cyan-green for contrast
+backgroundColor = "#050505"            # Deep black for main background
+secondaryBackgroundColor = "#222831"   # Dark gray for containers/sidebars
+textColor = "D8D9DA"                  # Light gray for good readability
+linkColor = "#00FFD1"
+font = "sans serif"
+codeFont = "monospace"
+headingFont = "sans serif"
+baseFontSize = 16
+baseRadius = "medium"
+borderColor = "#2A2A2A"
+showWidgetBorder = false               # Clean, flat look
+
+
+[theme.sidebar]
+primaryColor = "#00FFD1"
+backgroundColor ="#222831"
+secondaryBackgroundColor = "#0F0E0E"
+textColor = "#E0E0E0"
+linkColor = "#00FFD1"
+codeBackgroundColor = "#1F1F1F"
+font = "sans serif"
+codeFont = "monospace"
+headingFont = "sans serif"
+baseRadius = "medium"
+borderColor = "#333333"
+showWidgetBorder = false
