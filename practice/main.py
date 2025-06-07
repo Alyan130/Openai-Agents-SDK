@@ -2,6 +2,7 @@ from agents import Agent, Runner, AsyncOpenAI,OpenAIChatCompletionsModel, set_tr
 import os
 import dotenv
 from models import TripPlan, FlightCheck , TripSuccess
+import random
 
 dotenv.load_dotenv()
 
@@ -20,7 +21,12 @@ model = OpenAIChatCompletionsModel(
 )
 
 @function_tool
-
+def hotels():
+   '''This tool return hotel'''
+   my_hotels = ["vegas","newLife","openWorld"]
+   hotel= random.choice(my_hotels)
+   return hotel
+  
 
 plan_agent=Agent(
     name="Trip planning agent",
@@ -33,4 +39,19 @@ plan_agent=Agent(
     model=model,
     output_type=TripPlan
 )
+
+check_flight_agent = Agent(
+   name = "flight check agent",
+   isinstance='''
+    Your task is to check whether the route has flight selected or not and give output based on that
+   ''',
+   model=model,
+   output_type=FlightCheck
+)
+
+trip_succes_agent= Agent(
+   
+)
+
+
 
