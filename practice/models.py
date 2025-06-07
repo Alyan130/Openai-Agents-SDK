@@ -13,7 +13,4 @@ class CheckDetails(BaseModel):
 
 class TripSuccess(BaseModel):
       message:str
-      city:str
-      hotel:str
-      route:str
-      budget:str
+      details:TripPlan

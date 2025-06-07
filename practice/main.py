@@ -41,8 +41,8 @@ plan_agent=Agent(
     output_type=TripPlan
 )
 
-check_flight_agent = Agent(
-   name = "flight check agent",
+check_details_agent = Agent(
+   name = "Check details agent",
    instructions='''
    Your task is to check whether all the details like city ,hotel and route provided or not and answer in structured output.
    ''',
@@ -59,8 +59,10 @@ trip_succes_agent= Agent(
 
 async def run_agents():
     print("Plan your trip now!")
-    uinput = input("Enter your trip details")
+    city = input('Enter city in which you want to plan a trip.')
 
-   trip_details = await Runner.run(plan_agent,)
+    trip_details = await Runner.run(plan_agent,city)
+
+    result = await Runner.run(check_details_agent)
 
 
