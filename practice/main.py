@@ -1,6 +1,7 @@
 from agents import Agent, Runner, AsyncOpenAI,OpenAIChatCompletionsModel, set_tracing_disabled, function_tool
 import os
 import dotenv
+from models import TripPlan, FlightCheck , TripSuccess
 
 dotenv.load_dotenv()
 
