@@ -42,16 +42,20 @@ plan_agent=Agent(
 
 check_flight_agent = Agent(
    name = "flight check agent",
-   isinstance='''
-    Your task is to check whether the route has flight selected or not and give output based on that
+   instructions='''
+   Your task is to check whether the route has flight selected or not and give output based on that
    ''',
    model=model,
    output_type=FlightCheck
 )
 
 trip_succes_agent= Agent(
-   
+  name="You task is to give friendly message to the user that trip has been planned with trip details",
+  model=model,
+  output_type=TripSuccess
 )
+
+
 
 
 

@@ -10,6 +10,7 @@ class FlightCheck(BaseModel):
       isFlight:bool
 
 class TripSuccess(BaseModel):
+      message:str
       city:str
       hotel:str
       route:str
