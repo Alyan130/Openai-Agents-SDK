@@ -1,6 +1,21 @@
-def main():
-    print("Hello from practice!")
+from agents import Agent, Runner, AsyncOpenAI,OpenAIChatCompletionsModel, set_tracing_disabled, function_tool
+import os
+import dotenv
+
+dotenv.load_dotenv()
+
+set_tracing_disabled(disabled=True)
+API_KEY = os.getenv("API_KEY")
 
 
-if __name__ == "__main__":
-    main()
+provider = AsyncOpenAI(
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
+    api_key= API_KEY
+)
+
+model = OpenAIChatCompletionsModel(
+    model = "gemini-2.0-flash",
+    openai_client=provider
+)
+
+
