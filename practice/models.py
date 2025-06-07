@@ -6,8 +6,10 @@ class TripPlan(BaseModel):
      route:str
     
 
-class FlightCheck(BaseModel):
-      isFlight:bool
+class CheckDetails(BaseModel):
+      isCity:bool
+      isHotel:bool
+      isRoute:bool
 
 class TripSuccess(BaseModel):
       message:str

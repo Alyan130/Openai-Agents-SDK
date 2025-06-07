@@ -1,7 +1,7 @@
 from agents import Agent, Runner, AsyncOpenAI,OpenAIChatCompletionsModel, set_tracing_disabled, function_tool
 import os
 import dotenv
-from models import TripPlan, FlightCheck , TripSuccess
+from models import TripPlan, CheckDetails , TripSuccess
 import random
 
 dotenv.load_dotenv()
@@ -34,6 +34,7 @@ plan_agent=Agent(
     You plan the trip based on user details\n
     You have one tool <hotels> that helps you to select hotels in trip 
     Your task is to add route in trip planning details you can either add [flight,byroad,train] anyone of them 
+    following
     ''',
     tools=[hotels],
     model=model,
@@ -43,10 +44,10 @@ plan_agent=Agent(
 check_flight_agent = Agent(
    name = "flight check agent",
    instructions='''
-   Your task is to check whether the route has flight selected or not and give output based on that
+   Your task is to check whether all the details like city ,hotel and route provided or not and answer in structured output.
    ''',
    model=model,
-   output_type=FlightCheck
+   output_type=CheckDetails
 )
 
 trip_succes_agent= Agent(
@@ -56,6 +57,10 @@ trip_succes_agent= Agent(
 )
 
 
+async def run_agents():
+    print("Plan your trip now!")
+    uinput = input("Enter your trip details")
 
+   trip_details = await Runner.run(plan_agent,)
 
 
