@@ -19,4 +19,18 @@ model = OpenAIChatCompletionsModel(
     openai_client=provider
 )
 
+@function_tool
+
+
+plan_agent=Agent(
+    name="Trip planning agent",
+    instructions='''
+    You plan the trip based on user details\n
+    You have one tool <hotels> that helps you to select hotels in trip 
+    Your task is to add route in trip planning details you can either add [flight,byroad,train] anyone of them 
+    ''',
+    tools=[hotels],
+    model=model,
+    output_type=TripPlan
+)
 
