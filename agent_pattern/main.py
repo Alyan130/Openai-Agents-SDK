@@ -3,6 +3,7 @@ import os
 import dotenv
 from models import TripPlan, CheckDetails , TripSuccess
 import random
+import asyncio
 
 dotenv.load_dotenv()
 
@@ -57,12 +58,25 @@ trip_succes_agent= Agent(
 )
 
 
-async def run_agents():
+def run_agents():
     print("Plan your trip now!")
     city = input('Enter city in which you want to plan a trip.')
 
-    trip_details = await Runner.run(plan_agent,city)
+    trip_details = Runner.run_sync(plan_agent,city)
+    
+    print("passing details")
 
-    result = await Runner.run(check_details_agent)
+    details = Runner.run_sync(check_details_agent,trip_details.final_output)
+     
+
+    if details.final_output.isCity and details.final_output.isHotel and details.final_output.isRoute:
+        exit(0)
+    
+    print("details are valid now i succesfylly plans trip")
+
+    trip =  Runner.run_sync(trip_succes_agent,trip_details.final_output)
+    
+    print(trip.final_output)
 
 
+run_agents()
