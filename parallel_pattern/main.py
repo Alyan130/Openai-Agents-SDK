@@ -28,3 +28,23 @@ scraper_1 = Agent(
     instructions = "you just output news scrapped dont ask anything more",
     model=model 
 )
+
+
+scraper_2 = Agent(
+    name = "scraper_2",
+    instructions = "you just output ecommerce web scrapped not ask anything more",
+    model=model 
+)
+
+scraper_3 = Agent(
+    name = "scraper_3",
+    instructions = "you just output crciket details scrapped not ask anything more",
+    model=model 
+)
+
+manager_agent = Agent(
+    name = "manger agent",
+    instructions = "You are maanger agent that returns scrape details",
+    model=model,
+    output_type=ScrapeDetails
+)
