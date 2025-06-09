@@ -48,3 +48,34 @@ manager_agent = Agent(
     model=model,
     output_type=ScrapeDetails
 )
+
+
+async def run_agents():
+    print("Started working...")
+
+    res1, res2, res3 = await asyncio.gather(
+         Runner.run(
+             scraper_1,
+             "scrape news"
+         ),
+           Runner.run(
+             scraper_2,
+             "scrape ecommerce"
+         ),
+           Runner.run(
+             scraper_3,
+             "scrape sports"
+         ),
+     )
+    
+    scrape_responses = f'''
+     {res1}/n
+     {res2}/n
+     {res3}/n
+    '''
+
+    details = await Runner.run(manager_agent,scrape_responses)
+    print(details.final_output)
+
+await run_agents()
+   
