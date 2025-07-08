@@ -1,6 +1,5 @@
 from fpdf import FPDF
 
-
 class FormattedPDFReport(FPDF):
     def __init__(self):
         super().__init__()
