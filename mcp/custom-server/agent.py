@@ -21,14 +21,16 @@ model = OpenAIChatCompletionsModel(
 
 
 async def run_agent(mcp_server:MCPServer,prompt:str):
-  calculator_agent = Agent(
+  scrapper_agent = Agent(
       name="Calculator agent",
-      instructions = "You are calculator agent that calculates question based on serveral tools.",
+      instructions = '''You are scrapper agent , you will recieve a url to 
+      scrape the content. 
+      Use the tool web_scrapper to scrape and make a short summary of it.''',
       model = model,
       mcp_servers=[mcp_server]
     )
   
-  result = await Runner.run(calculator_agent,prompt)
+  result = await Runner.run(scrapper_agent,prompt)
   print(result.final_output)
 
 
@@ -37,13 +39,14 @@ async def main():
    async with MCPServerStdio(
        params={
           "command":"uv",
-          "args":["run","server.py"]
+          "args":["run","main.py"],
+          "cwd":"D:\Python Course\MCP\web_scrapper_server"
        }
     ) as server:
          print(f"{server._name} started!")
-         await run_agent(server,"muliply 10 and 20")
+         await run_agent(server,"https://alyan-portfolio.vercel.app/")
     
 
-     
+  
 asyncio.run((main()))
 
